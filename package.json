@@ -1,0 +1,18 @@
+{
+  "name": "form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "less": "^3.0.4",
+    "parcel-bundler": "^1.8.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parcel": "node_modules/.bin/parcel ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

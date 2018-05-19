@@ -1,0 +1,244 @@
+* {
+  box-sizing: border-box;
+}
+
+//reset default styles
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none;
+  box-sizing: border-box;
+  line-height: 1;
+  resize: none;
+
+}
+
+/* Remove the stupid outer glow in Webkit */
+input:focus, textarea:focus, select:focus {
+  outline: 0;
+}
+
+body {
+  background-color: #000000c2;
+
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+form {
+  & .form {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 25px;
+    padding: 20px 0;
+    color: white;
+
+    & div {
+      margin: 0 10px;
+      width: 100%;
+
+      & p {
+        &.error-message {
+          color: tomato;
+          font-size: 15px;
+          font-style: italic;
+          padding: 3px;
+          margin-left: calc(30% + 80px);
+          margin-top: 0;
+          margin-bottom: 0;
+          width: 200px;
+          animation: validationMessageInactive .5s ease-out;
+        }
+
+        &.active {
+          animation: validationMessage .5s ease-in;
+        }
+
+        & label {
+          display: inline-block;
+          margin-right: 25px;
+          margin-left: 80px;
+          width: calc(30% - 25px);
+          padding: 15px 0;
+
+          &.required::after {
+            content: '*';
+            color: tomato;
+            font-size: 20px;
+            position: absolute;
+            margin-left: 5px;
+          }
+
+        }
+
+        & input, & textarea {
+          width: 190px;
+          border: 1px solid transparent;
+          border-bottom: 1px solid white;
+          padding: 10px;
+          color: white;
+          transition: border-color .3s ease-in;
+          position: relative;
+          background-color: transparent;
+        }
+
+        & select {
+          font-size: 15px;
+          padding: 20px 0;
+          border: 1px solid transparent;
+          border-bottom: 1px solid white;
+          width: 190px;
+          color: white;
+          & option {
+            background-color: #3d3d3d;
+          }
+
+        }
+
+        & input {
+          &.error {
+            border-bottom: 1px solid tomato;
+            border-radius: 3px;
+          }
+
+          &:focus + span::after {
+            transform: scale(1);
+          }
+
+          &.error:focus + span::after {
+            transform: scale(1);
+            background-color: white;
+          }
+        }
+
+        & span {
+          position: relative;
+
+          &::after {
+            content: '';
+            background-color: tomato;
+            display: inline-block;
+            height: 1px;
+            right: 0;
+            margin-top: -2px;
+            position: absolute;
+            transform: scale(0, 1);
+            transition: all 0.5s linear;
+            width: 190px;
+            top: 36px;
+          }
+        }
+
+      }
+
+    }
+
+  }
+  & input[type = submit] {
+    border: none;
+    background-color: white;
+    color: #b5514a;
+    padding: 20px 50px;
+    font-size: 25px;
+    align-self: center;
+    margin: auto;
+    display: block;
+    transition: background-color .2s ease-in-out;
+
+    &:hover {
+      background-color: tomato;
+      color: white;
+    }
+
+  }
+}
+
+@media (max-width: 900px) {
+  form {
+    & .form {
+      flex-direction: column;
+
+      & div {
+        margin: auto;
+      }
+
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  form {
+    & .form {
+      & div {
+        & p {
+          text-align: center;
+
+          &.error-message {
+            width: auto;
+            margin-left: 0;
+          }
+
+          & label {
+            width: calc(30%);
+            display: block;
+            margin: auto;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+@keyframes validationMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px) scale(.5);
+
+  }
+
+  50% {
+    opacity: .5;
+    transform: translateY(-10px) scale(.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+@keyframes validationMessageInactive {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+
+  }
+
+  50% {
+    opacity: .5;
+    transform: translateY(-10px) scale(.9);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-15px) scale(.8);
+  }
+
+}
+
